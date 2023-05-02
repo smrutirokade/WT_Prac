@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #c6a3f4;
+}
+.container {
+    position: relative;
+  max-width: 850px;
+  width: 100%;
+  background: #775353;
+  padding: 40px 30px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  perspective: 2800px;
+}
+.container .cover{
+    position: absolute;
+    height: 100%;
+    width: 50%;
+    top: 0;
+    left: 50%;
+    /* background: red; */
+    z-index: 1;
+    transition: all 1s ease;
+    transform-origin: left;
+    z-index: 98;
+    transform-style:preserve-3d;
+    
+}
+.container .cover::before{
+    height: 100%;
+    position: absolute;
+    content: '';
+    width: 100%;
+    background: #7c7b7d;
+    opacity: 0.3;
+    /* z-index: 100; */
+}
+.container #flip:checked ~ .cover{
+    transform: rotateY(-180deg);
+}
+.container .cover img{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    backface-visibility: hidden;
+}
+.container .form-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.container form {
+  height: 100%;
+  width: 100%;
+  background-color: #88b2f5;
+}
+.form-content .login-form, .form-content .signup-form{
+    width: calc(100%/2 - 25px);
+}
+form .form-content .title{
+    position: relative;
+    font-size: 24px;
+    font-weight: 500;
+    color: #333;
+}
+form .form-content .title::before{
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 3px;
+    left: 0;
+    bottom: 0;
+    background-color: #caafee;
+}
+form .signup-form .form-content .title::before{
+    width: 20px;
+
+}
+
+form .form-content .input-boxes{
+    margin-top: 30px;
+}
+form  .form-content .input-boxes .input-box{
+    display: flex;
+    align-items: center;
+    height: 50px;
+    width: 100%;
+    margin: 0 10px;
+    position: relative;
+}
+.form-content .input-box input{
+    width: 100%;
+    height: 100%;
+    outline: none;
+    border: none;
+    padding: 0 30px;
+    font-size: 17px;
+    font-weight: 500;
+    border-bottom: 2px solid rgba(0,0,0,0.2);
+    transition: all 0.2s ease;
+}
+.form-content .input-box i{
+    position: absolute;
+}
+.form-content .input-box i:hover{
+    color: #7d2ae8;
+}
+.form-content .input-box input:focus{
+    border-color: #7d2ae8;
+}
+.form-content .input-boxes .forgot-password{
+    margin: 0 10px;
+}
+.form-content .input-boxes .forgot-password a{
+    text-decoration: none;
+}
+.form-content .input-boxes .forgot-password a:hover{
+    text-decoration: underline;
+}
+form .form-content .input-boxes .button{
+    /* margin-left: 0; */
+    margin-top: 40px;
+}
+.form-content .input-boxes .button button{
+    
+    border: none;
+    width: 100%;
+    padding: 0;
+    background: #181818;
+    color: #fff;
+    height: 100%;
+    border-radius: 5px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.form-content .input-boxes .button button:hover{
+    background: #1a1a1b;
+}
+.form-content .input-boxes .text{
+    text-align: center;
+    margin-left:10px;
+}
+.form-content .input-boxes label{
+    color: #171619;
+    cursor: pointer;
+}
+.form-content .input-boxes label:hover{
+text-decoration: underline;
+}
+
+@media (max-width:700px) {
+    .container .cover{
+        display: none;
+    }
+    .form-content .login-form{
+        width: 100%;
+    }
+    .form-content .signup-form{
+        display: none;
+    }
+    .container #flip:checked ~ form .signup-form{
+        width: 100%;
+        display: block;
+    }
+    .container #flip:checked ~ form .login-form{
+        display: none;
+    }
+
+}
+    </style>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="all.css" />
+    <title>Login Page</title>
+  </head>
+  <body>
+    <div class="container">
+        <input type="checkbox" name="" id="flip">
+        <div class="cover">
+            <div class="front">
+                <img src="front.jpg" alt="front">
+            </div>
+        </div>
+      <form action="#">
+        <div class="form-content">
+          <div class="login-form">
+            <div class="title">Login</div>
+            <div class="input-boxes">
+              <div class="input-box">
+                <i class="fas fa-envelope"></i>
+                <input type="email" placeholder="Email" required />
+              </div>
+              <div class="input-box">
+                <i class="fas fa-lock"></i>
+                <input type="password" placeholder="Password" required />
+              </div>
+              <div class="forgot-password"><a href="#">Forgot Password</a></div>
+              <div class="button input-box">
+            
+                <!-- <input type="submit" placeholder="Password" required> -->
+                <button type="submit">Submit</button>
+              </div>
+              <div class="text">
+                Don't have an account? <label for="flip">Sign up</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="signup-form">
+            <div class="title">Sign Up</div>
+            <div class="input-boxes">
+              <div class="input-box">
+                <i class="fas fa-user"></i>
+                <input type="text" placeholder="Name" required />
+              </div>
+              <div class="input-box">
+                <i class="fas fa-envelope"></i>
+                <input type="email" placeholder="Email" required />
+              </div>
+              <div class="input-box">
+                <i class="fas fa-lock"></i>
+                <input type="password" placeholder="Password" required />
+              </div>
+              <div class="forgot-password"><a href="#">Forgot Password</a></div>
+              <div class="button input-box">
+                
+                <!-- <input type="submit" placeholder="Password" required> -->
+                <button type="submit">Submit</button>
+              </div>
+              <div class="text">
+                Already have an account? <label for="flip">Sign in</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
